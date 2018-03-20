@@ -17,7 +17,7 @@
     </noscript>
   <style amp-custom>
       html{font-size:15px;font-family:Arial,Verdana,Helvetica,sans-serif}
-body{padding-top:102px} .clearfix{overflow:hidden}
+.clearfix{overflow:hidden}
 header{position:fixed;width:100%;top:0;z-index:999} header
 .pmlp-navbar{background:#000;border-bottom:5px solid #800d1e} header
 .pmlp-number{background:#fff;padding:0 15px;box-shadow:0 2px 4px 0
@@ -75,13 +75,14 @@ p:first-child{color:#800d1e;font-size:20px;font-weight:500;margin-bottom:4px}
       <!-- This will be used for creating dropdown fields for the form-->
       <div class="dropdown-wrapper">
         <div class="form-group">
-          <amp-list width="auto" height="55" layout="fixed-height" src="https://capellaamp.herokuapp.com/testing.json">
+          <amp-list width="auto" height="55" layout="fixed-height" src="/testing.json">
             <template type="amp-mustache">
               <select class="degreeDropdown form-control" title="Select your degree of interest here" name="degree" on="change:
               AMP.setState({
 				degreeVal: event.value,
-				learningFormat:event.value==''?'hide':'',
-				educationLevel:event.value==''?'hide':''
+				learningFormat:'hide',
+				educationLevel:'hide',
+                age:'hide'                                                                                                        	
               })">
                 <option value="">Degree</option>
                 {{#data}}
@@ -93,14 +94,15 @@ p:first-child{color:#800d1e;font-size:20px;font-weight:500;margin-bottom:4px}
           </amp-list>
         </div>
         <div class="form-group">
-          <amp-list width="auto" height="55" layout="fixed-height" src="https://capellaamp.herokuapp.com/testing.json?empty=true" [src]="'https://capellaamp.herokuapp.com/testing.json?degree='+degreeVal">
+          <amp-list width="auto" height="55" layout="fixed-height" src="/testing.json?empty=true" [src]="'/testing.json?degree='+degreeVal">
             <template type="amp-mustache">
               <select class="aosDropdown form-control" name="aos" on="
               change:
               AMP.setState({
 				aosVal: event.value,
-				learningFormat:event.value==''?'hide':'',
-				educationLevel:event.value==''?'hide':''
+				learningFormat:'hide',
+				educationLevel:'hide',
+                age:'hide'                                                      
               })">
                 <option>Area of Study</option>
                 {{#data}}
@@ -112,13 +114,14 @@ p:first-child{color:#800d1e;font-size:20px;font-weight:500;margin-bottom:4px}
           </amp-list>
         </div>
         <div class="form-group">
-          <amp-list width="auto" height="55" layout="fixed-height" src="https://capellaamp.herokuapp.com/testing.json?empty=true" [src]="'https://capellaamp.herokuapp.com/testing.json?degree='+degreeVal+'&aos='+aosVal">
+          <amp-list width="auto" height="55" layout="fixed-height" src="/testing.json?empty=true" [src]="'/testing.json?degree='+degreeVal+'&aos='+aosVal">
             <template type="amp-mustache">
               <select class="specDropdown form-control" title="Select your specialization of interest here" name="program_code" data-rule-required="true" data-msg-required="Please enter your specialization." on="
               change:
               AMP.setState({
 				learningFormat:event.value !='' && event.value.split(',')[1] != ''?'show':'hide',
-				educationLevel:event.value < 5 ?'show':'hide';
+				educationLevel:'show',
+                age:'hide'
               })">
                 <option value="">Specialization</option>
                 {{#data}}
@@ -129,7 +132,7 @@ p:first-child{color:#800d1e;font-size:20px;font-weight:500;margin-bottom:4px}
             </template>
           </amp-list>
         </div>
-        <div class="form-group">
+        <div class="form-group hide">
           <div class="nursing-field">
             <label class="d-block">Do you have an unrestricted RN license?</label>
             <input type="radio" class="d-inline-block mx-1" name="rn_license" value="yes">Yes
@@ -154,8 +157,12 @@ p:first-child{color:#800d1e;font-size:20px;font-weight:500;margin-bottom:4px}
           </div>
         </div>
       </div>
-      <div class="form-group hide">
-        <select class="selectbox form-control" id="education_level" title="- Current level of education -" name="education_level">
+      <div class="form-group hide" [class]="educationLevel||'hide'">
+        <select class="selectbox form-control" id="education_level" title="- Current level of education -" name="education_level" on="
+              change:
+              AMP.setState({
+				age:event.value < 5 ?'show':'hide'
+              })">
           <option value="" selected="selected">- Current level of education -</option>
           <option value="3">High School Diploma</option>
           <option value="4">Less than 1 year of college (1-23 quarter credits)</option>
@@ -166,7 +173,7 @@ p:first-child{color:#800d1e;font-size:20px;font-weight:500;margin-bottom:4px}
         </select>
         <span class="icon icon-caret-right arrow-position"></span>
       </div>
-      <div class="form-group hide">
+      <div class="form-group hide" [class]="age||'hide'">
         <select class="selectbox form-control" id="age_21" title="What is your age?" name="age_21">
           <option value="" selected="selected">What is your age?</option>
           <option value="17">17 and Under</option>
