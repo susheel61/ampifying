@@ -1,0 +1,206 @@
+<!doctype html>
+<html amp lang="en">
+<head>
+  <meta charset="utf-8">
+  <script async src="https://cdn.ampproject.org/v0.js"></script>
+  <script async custom-element="amp-form" src="https://cdn.ampproject.org/v0/amp-form-0.1.js"></script>
+  <script async custom-element="amp-bind" src="https://cdn.ampproject.org/v0/amp-bind-0.1.js"></script>
+  <script async custom-element="amp-list" src="https://cdn.ampproject.org/v0/amp-list-0.1.js"></script>
+  <script async custom-template="amp-mustache" src="https://cdn.ampproject.org/v0/amp-mustache-0.1.js"></script>
+  <title>amp</title>
+  <link rel="canonical" href="http://example.ampproject.org/article-metadata.html">
+  <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
+  <style amp-boilerplate>body{-webkit-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-moz-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-ms-animation:-amp-start 8s steps(1,end) 0s 1 normal both;animation:-amp-start 8s steps(1,end) 0s 1 normal both}@-webkit-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-moz-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-ms-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-o-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}
+    </style>
+  <noscript>
+      <style amp-boilerplate>body{-webkit-animation:none;-moz-animation:none;-ms-animation:none;animation:none}</style>
+    </noscript>
+  <style amp-custom>
+      html{font-size:15px;font-family:Arial,Verdana,Helvetica,sans-serif}
+body{padding-top:102px} .clearfix{overflow:hidden}
+header{position:fixed;width:100%;top:0;z-index:999} header
+.pmlp-navbar{background:#000;border-bottom:5px solid #800d1e} header
+.pmlp-number{background:#fff;padding:0 15px;box-shadow:0 2px 4px 0
+rgba(0,0,0,0.2)} header .pmlp-number
+a{text-decoration:none;font-size:11px;width:100%;display:block;padding:10px
+0;color:#000} header .pmlp-navbar{padding:10px 1rem}
+.ampbanner{position:relative} .ampbanner .content-section{padding:0
+15px;float:right;text-align:right;width:62.5%;bottom:2rem;right:0;position:absolute}
+.ampbanner .content-section p{margin:0;font-size:22px;line-height:26px}
+.ampbanner .content-section p.degree{font-weight:bold;color:#800d1e}
+footer{background:#000;color:#999;padding:40px
+1rem;font-size:11px;text-align:center} footer
+ul.pmlp-footer-links{list-style-type:none;margin:0} footer
+ul.pmlp-footer-links li{display:inline-block} footer
+ul.pmlp-footer-links li span{font-size:1.6rem;padding:0 4px} footer
+ul.pmlp-footer-links li
+a{color:#999;text-decoration:none;line-height:1.6rem} footer
+.pmlp-copyright{padding:20px 0} footer .pmlp-copyright
+p{line-height:1.6rem} footer .pmlp-copyright
+a{color:#fff;text-decoration:none}
+.form-wrapper{background:#efefef;padding:15px} .form-wrapper
+.form-control{font-size:15px;border:1px solid
+#666;border-radius:0;padding:12px;background-color:#fff;background-image:none;margin:10px
+0;outline:0;color:#666
+!important;line-height:1.2;width:100%;-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box}
+.form-wrapper
+.btn.btn-primary{width:100%;white-space:normal;margin-bottom:30px;background-color:#b62025;border-color:#b62025;cursor:pointer;padding:12px;font-weight:bold;line-height:1.2;border-radius:2px;font-size:1rem;margin-top:15px;transition:all
+.2s ease-in-out;color:#fff} .form-wrapper
+.btn.btn-primary:hover{background-color:#8b181c;border-color:#8b181c;text-decoration:none}
+.form-wrapper .description p{font-size:14px} .form-wrapper .description
+em{color:#666;font-style:italic} .form-wrapper
+a{color:#b62025;text-decoration:underline;cursor:pointer}
+.amp-container{text-align:center}
+.amp-rte-component,.amp-container{margin:0 15px 0 15px}
+.matrix-comp-section p{border-top:1px solid #ccc;padding:30px}
+.amp-rte-component
+p:first-child{color:#800d1e;font-size:20px;font-weight:500;margin-bottom:4px}
+.amp-img-component amp-img{margin:10px 0}
+.footnote{font-size:12px;text-align:left;border-bottom:1px solid #ccc}
+.hide{display:none} .show{display:block}
+    </style>
+</head>
+<body>
+  <div class="form-wrapper">
+    <div class="error-summary p-l-1"></div>
+    <form id="irfshortbachelor" class="capella-form" action="" method="post">
+      <div class="description">
+        <p>Want to know more? Complete the form for detailed information on your program, including courses, the application process, and tuition and financial aid details. </p>
+        <p>
+          <strong>
+            <em>All fields are required.</em>
+          </strong>
+        </p>
+      </div>
+      <!-- This will be used for creating dropdown fields for the form-->
+      <div class="dropdown-wrapper">
+        <div class="form-group">
+          <amp-list width="auto" height="55" layout="fixed-height" src="https://capellaamp.herokuapp.com/testing.json">
+            <template type="amp-mustache">
+              <select class="degreeDropdown form-control" title="Select your degree of interest here" name="degree" on="change:
+              AMP.setState({
+				degreeVal: event.value,
+				learningFormat:event.value==''?'hide':'',
+				educationLevel:event.value==''?'hide':''
+              })">
+                <option value="">Degree</option>
+                {{#data}}
+                <option value="{{id}}">{{name}}</option>
+                {{/data}}
+              </select>
+              <span class="icon icon-caret-right arrow-position"></span>
+            </template>
+          </amp-list>
+        </div>
+        <div class="form-group">
+          <amp-list width="auto" height="55" layout="fixed-height" src="https://capellaamp.herokuapp.com/testing.json?empty=true" [src]="'https://capellaamp.herokuapp.com/testing.json?degree='+degreeVal">
+            <template type="amp-mustache">
+              <select class="aosDropdown form-control" name="aos" on="
+              change:
+              AMP.setState({
+				aosVal: event.value,
+				learningFormat:event.value==''?'hide':'',
+				educationLevel:event.value==''?'hide':''
+              })">
+                <option>Area of Study</option>
+                {{#data}}
+                <option value="{{id}}">{{name}}</option>
+                {{/data}}
+              </select>
+              <span class="icon icon-caret-right arrow-position"></span>
+            </template>
+          </amp-list>
+        </div>
+        <div class="form-group">
+          <amp-list width="auto" height="55" layout="fixed-height" src="https://capellaamp.herokuapp.com/testing.json?empty=true" [src]="'https://capellaamp.herokuapp.com/testing.json?degree='+degreeVal+'&aos='+aosVal">
+            <template type="amp-mustache">
+              <select class="specDropdown form-control" title="Select your specialization of interest here" name="program_code" data-rule-required="true" data-msg-required="Please enter your specialization." on="
+              change:
+              AMP.setState({
+				learningFormat:event.value !='' && event.value.split(',')[1] != ''?'show':'hide',
+				educationLevel:event.value < 5 ?'show':'hide';
+              })">
+                <option value="">Specialization</option>
+                {{#data}}
+                <option value="{{id}},{{flexpath}}">{{name}}</option>
+                {{/data}}
+              </select>
+              <span class="icon icon-caret-right arrow-position"></span>
+            </template>
+          </amp-list>
+        </div>
+        <div class="form-group">
+          <div class="nursing-field">
+            <label class="d-block">Do you have an unrestricted RN license?</label>
+            <input type="radio" class="d-inline-block mx-1" name="rn_license" value="yes">Yes
+            <input type="radio" class="d-inline-block mx-1" name="rn_license" value="no" checked>No
+          </div>
+        </div>
+        <div class="form-group hide" [class]="learningFormat||'hide'">
+          <div class="flexpath-field">
+            <label class="d-block">We have 2 online learning formats. Which one are you most interested in?</label>
+            <input type="radio" name="flexpath" value="guidedpath">GuidedPath: Follow our schedule
+            <br>
+            <input type="radio" name="flexpath" value="flexpath">FlexPath: Set your own pace
+            <br>
+            <input type="radio" name="flexpath" value="both">I'd like information on both
+          </div>
+        </div>
+        <div class="form-group hide">
+          <div class="master-degree">
+            <label class="d-block">Do you have a master's degree?</label>
+            <input type="radio" name="masterdegree" value="yes">Yes
+            <input type="radio" name="masterdegree" value="no" checked>No
+          </div>
+        </div>
+      </div>
+      <div class="form-group hide">
+        <select class="selectbox form-control" id="education_level" title="- Current level of education -" name="education_level">
+          <option value="" selected="selected">- Current level of education -</option>
+          <option value="3">High School Diploma</option>
+          <option value="4">Less than 1 year of college (1-23 quarter credits)</option>
+          <option value="5">1-2 years of college (24-90 quarter credits)</option>
+          <option value="6">Associate&#39;s Degree or 2+ years of college</option>
+          <option value="11">Bachelor&#39;s Degree</option>
+          <option value="7">QA Test</option>
+        </select>
+        <span class="icon icon-caret-right arrow-position"></span>
+      </div>
+      <div class="form-group hide">
+        <select class="selectbox form-control" id="age_21" title="What is your age?" name="age_21">
+          <option value="" selected="selected">What is your age?</option>
+          <option value="17">17 and Under</option>
+          <option value="18">18-23</option>
+          <option value="24">24-29</option>
+          <option value="30">30-44</option>
+          <option value="45">45+</option>
+        </select>
+        <span class="icon icon-caret-right arrow-position"></span>
+      </div>
+      <div class="form-group">
+        <input type="text" placeholder="First Name" value="" name="first_name" id="first_name" class="form-control" title="First Name" autocomplete="off" />
+      </div>
+      <div class="col-12 old-col-xs-16 form-group">
+        <input type="text" placeholder="Last Name" value="" name="last_name" id="last_name" class="form-control" title="Last Name" autocomplete="off" />
+      </div>
+      <div class="form-group">
+        <input type="email" placeholder="Email Address" value="" name="email" id="email" class="form-control" title="Email Address" autocomplete="off" />
+      </div>
+      <div class="form-group">
+        <input type="tel" placeholder="Phone Number" value="" name="phone" id="phone" class="form-control phone-number" title="Phone Number" autocomplete="off" />
+      </div>
+      <div class="form-group">
+        <button class="btn btn-primary" type="submit" title="Submit">Submit</button>
+      </div>
+      <div class="description">
+        <p>
+          <a title="https://www.capella.edu/privacy-policy/" href="/privacy-policy.html" target="_blank">We respect your privacy</a>
+        </p>
+        <p>
+          <em>By providing your information, you consent to Capella University sending you occasional communications and special promotions.</em>
+        </p>
+      </div>
+    </form>
+  </div>
+</body>
+</html>
