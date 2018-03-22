@@ -5,7 +5,7 @@ const request = require('request')
 const PORT = process.env.PORT || 5000
 const app = express()
 var corsOptions = {
-  origin: 'https://ampbyexample.com',
+  origin: 'https://devwww.capella.edu',
   optionsSuccessStatus: 200,
   credentials:true
 }
