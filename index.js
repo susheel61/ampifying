@@ -98,7 +98,8 @@ app.post('/submitdata',cors(corsOptions),function (req, res, next) {
 		res.status(400).json({
 			firstName:"susheel",
 			dynamicLinkLabel:"BS: Bachelor of Science in Information Technology",
-			dyanamicLink:"/content/capella/en/online-degrees/bachelors-it-data-analytics"
+			dyanamicLink:"/content/capella/en/online-degrees/bachelors-it-data-analytics",
+			message:"failure message whatever returned from seahawk"
 		});
 	}
 });
