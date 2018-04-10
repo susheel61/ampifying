@@ -88,6 +88,7 @@ app.get('/testing.json',cors(corsOptions),function (req, res, next) {
 });
 
 app.post('/submitdata',cors(corsOptions),function (req, res, next) {
+	res.setHeader('access-control-expose-headers','AMP-Access-Control-Allow-Source-Origin')
 	res.setHeader('AMP-Access-Control-Allow-Source-Origin', 'https://devwww.capella.edu');
 	if(req.query.fail === 'true') {
 		res.status(400).json({
