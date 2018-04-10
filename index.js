@@ -86,3 +86,17 @@ app.get('/testing.json',cors(corsOptions),function (req, res, next) {
 		res.send(response);
 	});
 });
+
+app.post('/submitdata',cors(corsOptions),function (req, res, next) {
+	if(req.query.fail === 'true') {
+		res.status(400).json({
+			message:"failure message whatever returned from seahawk"
+		});
+	} else {
+		res.status(200).json({
+			firstName:"susheel",
+			dynamicLinkLabel:"BS: Bachelor of Science in Information Technology",
+			dyanamicLink:"/content/capella/en/online-degrees/bachelors-it-data-analytics"
+		});
+	}
+});
