@@ -87,7 +87,7 @@ app.get('/testing.json',cors(corsOptions),function (req, res, next) {
 	});
 });
 
-app.post('/submitdata',cors(corsOptions),function (req, res, next) {
+app.get('/submitdata',cors(corsOptions),function (req, res, next) {
 	res.setHeader('access-control-expose-headers','AMP-Access-Control-Allow-Source-Origin')
 	res.setHeader('AMP-Access-Control-Allow-Source-Origin', 'https://devwww.capella.edu');
 	if(req.query.fail === 'true') {
@@ -98,8 +98,7 @@ app.post('/submitdata',cors(corsOptions),function (req, res, next) {
 		res.status(200).json({
 			firstName:"susheel",
 			dynamicLinkLabel:"BS: Bachelor of Science in Information Technology",
-			dyanamicLink:"/content/capella/en/online-degrees/bachelors-it-data-analytics",
-			message:"failure message whatever returned from seahawk"
+			dyanamicLink:"/content/capella/en/online-degrees/bachelors-it-data-analytics"
 		});
 	}
 });
